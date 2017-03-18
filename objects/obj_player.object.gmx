@@ -26,6 +26,9 @@
           <argument>
             <kind>1</kind>
             <string>mDirection = 1;
+mClimbing = 0;
+mXSpeed = 0;
+mYSpeed = 0;
 </string>
           </argument>
         </arguments>
@@ -49,6 +52,10 @@
           <argument>
             <kind>1</kind>
             <string>mMoveSpeed = 25.0;
+if (keyboard_check(vk_space))
+{
+    mMoveSpeed = 75.0;
+}
 
 var vNewDirection = 0;
 
@@ -90,24 +97,54 @@ image_xscale = mDirection;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>mYSpeed = 0;
-
-if (keyboard_check(ord('S')))
+            <string>if (mClimbing)
 {
-    mYSpeed += 15.0;
+    mYSpeed = 0;
+    
+    if (keyboard_check(ord('S')))
+    {
+        mYSpeed += 15;
+    }
+    
+    if (keyboard_check(ord('W')))
+    {
+        mYSpeed -= 10;
+    }
+    
+    if (position_meeting(x, y + mYSpeed / room_speed, obj_ladder))
+    {
+        if (position_meeting(x, y + mYSpeed / room_speed + 16, obj_ladder) || mYSpeed &lt; 0)
+        {
+            y += mYSpeed / room_speed;
+            mYSpeed = 0;
+        }
+        else
+        {
+            mClimbing = 0;
+        }
+    }
+    else
+    {
+        mClimbing = 0;
+        mYSpeed = 0;
+    }
+    
+    if (keyboard_check_pressed(ord('E')) &amp;&amp; !place_meeting(x, y, obj_wall))
+    {
+        mClimbing = 0;
+        mYSpeed = 0;
+    }
 }
-
-if (keyboard_check(ord('W')))
+else
 {
-    mYSpeed -= 10.0;
+    if (position_meeting(x, y, obj_ladder))
+    {
+        if (keyboard_check_pressed(ord('E')))
+        {
+            mClimbing = 1;
+        }
+    }
 }
-
-if (position_meeting(x, y + mYSpeed / room_speed, obj_ladder))
-{
-    y += mYSpeed / room_speed;
-}
-
-mYSpeed = 0;
 </string>
           </argument>
         </arguments>
@@ -136,8 +173,9 @@ mYSpeed = 0;
     }
     if (mXSpeed &lt; 0)
     {
-        action_move_contact(270, -mXSpeed / room_speed, 1);
+        action_move_contact(180, -mXSpeed / room_speed, 1);
     }
+    mXSpeed = 0;
 }
 else
 {
@@ -169,6 +207,44 @@ view_wview[0] = 240;
 view_hview[0] = 120;
 view_xview[0] = x - view_wview[0] / 2;
 view_yview[0] = y - view_hview[0] / 2;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (place_meeting(x, y + mYSpeed / room_speed, obj_wall))
+{
+    if (mYSpeed &gt; 0)
+    {
+        action_move_contact(270, mYSpeed / room_speed, 1);
+    }
+    if (mYSpeed &lt; 0)
+    {
+        action_move_contact(90, -mYSpeed / room_speed, 1);
+    }
+    mYSpeed = 0;
+}
+else
+{
+    y += mYSpeed / room_speed;
+}
+
+mYSpeed += 150.0 / room_speed;
 </string>
           </argument>
         </arguments>

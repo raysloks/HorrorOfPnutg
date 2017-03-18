@@ -41,6 +41,7 @@
     <room>rooms\room_bunker_center</room>
     <room>rooms\room_bunker_east</room>
     <room>rooms\room_outside</room>
+    <room>rooms\room_bunker_northeast</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
