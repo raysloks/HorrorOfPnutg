@@ -48,13 +48,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var player = instance_place(x, y, obj_player);
+            <string>var mob = instance_place(x, y, obj_mob);
 
-if (player != noone)
+if (mob != noone)
 {
     if (sprite_index == spr_door_closed)
     {
-        image_xscale = player.mDirection;
+        image_xscale = mob.mDirection;
         audio_play_sound(snd_door, 0, false);
     }
     sprite_index = spr_door_open;

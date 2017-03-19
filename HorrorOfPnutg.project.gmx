@@ -37,10 +37,14 @@
   <scripts name="scripts">
     <script>scripts\scr_movement_x.gml</script>
     <script>scripts\scr_movement_y.gml</script>
+    <script>scripts\scr_movement.gml</script>
   </scripts>
+  <fonts name="fonts">
+    <font>fonts\font_basic</font>
+  </fonts>
   <objects name="objects">
     <object>objects\obj_wall</object>
-    <object>objects\obj_player</object>
+    <object>objects\obj_mob</object>
     <object>objects\obj_ctrl</object>
     <object>objects\obj_fog</object>
     <object>objects\obj_exit</object>

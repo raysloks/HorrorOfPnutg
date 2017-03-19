@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-1000</depth>
   <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -26,6 +26,92 @@
           <argument>
             <kind>1</kind>
             <string>mFrameRate = 144;
+
+mPlayer = instance_find(obj_mob, 0);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>view_enabled = true;
+view_visible[0] = true;
+view_wview[0] = 240;
+view_hview[0] = 120;
+view_xview[0] = mPlayer.x - view_wview[0] / 2;
+view_yview[0] = mPlayer.y - view_hview[0] / 2;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>with (mPlayer)
+{
+    mInputX = 0;
+    if (keyboard_check(ord('A')))
+    {
+        mInputX -= 1;
+    }
+    if (keyboard_check(ord('D')))
+    {
+        mInputX += 1;
+    }
+    
+    mInputY = 0;
+    if (keyboard_check(ord('W')))
+    {
+        mInputY -= 1;
+    }
+    if (keyboard_check(ord('S')))
+    {
+        mInputY += 1;
+    }
+    
+    mInputSpace = 0;
+    if (keyboard_check(vk_space))
+    {
+        mInputSpace += 1;
+    }
+    
+    mInputUse = 0;
+    if (keyboard_check(ord('E')))
+    {
+        mInputUse += 1;
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -95,6 +181,31 @@
           <argument>
             <kind>1</kind>
             <string>room_speed = mFrameRate;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_set_color(c_red);
+draw_set_font(font_basic);
+draw_text(view_xview[0], view_yview[0], "Lorem ipsum.");
 </string>
           </argument>
         </arguments>

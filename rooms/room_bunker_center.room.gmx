@@ -73,7 +73,7 @@
     <instance objName="obj_fog" x="816" y="288" name="inst_C97E40D7" locked="0" code="" scaleX="3" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_fog" x="368" y="288" name="inst_8C0BCD7D" locked="0" code="" scaleX="7.5" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="912" y="288" name="inst_AAE91A49" locked="0" code="" scaleX="1" scaleY="3" colour="4294967295" rotation="0"/>
-    <instance objName="obj_player" x="656" y="208" name="inst_CA9B9FB9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_mob" x="656" y="208" name="inst_CA9B9FB9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_fog" x="624" y="192" name="inst_8EB9FE3B" locked="0" code="" scaleX="0.5" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="352" y="224" name="inst_3875EA5F" locked="0" code="" scaleX="1" scaleY="4" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="272" y="336" name="inst_1BADFB81" locked="0" code="" scaleX="2" scaleY="3" colour="4294967295" rotation="0"/>
@@ -118,6 +118,7 @@
     <instance objName="obj_ladder" x="176" y="304" name="inst_3D6701CC" locked="0" code="" scaleX="1" scaleY="7" colour="4294967295" rotation="0"/>
     <instance objName="obj_ladder" x="368" y="192" name="inst_C430BF35" locked="0" code="" scaleX="1" scaleY="5" colour="4294967295" rotation="0"/>
     <instance objName="obj_ctrl" x="0" y="0" name="inst_50357CF3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_fog" x="80" y="176" name="inst_D79B3E4E" locked="0" code="" scaleX="0.5" scaleY="0.5" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="bg_ext" x="512" y="256" w="16" h="16" xo="0" yo="112" id="10000162" name="inst_F4EB76F3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
