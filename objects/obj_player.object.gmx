@@ -6,7 +6,7 @@
   <depth>0</depth>
   <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
-  <maskName>&lt;undefined&gt;</maskName>
+  <maskName>spr_guy_idle</maskName>
   <events>
     <event eventtype="0" enumb="0">
       <action>
@@ -51,32 +51,39 @@ mYSpeed = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>mMoveSpeed = 25.0;
-if (keyboard_check(vk_space))
+            <string>if (!mClimbing)
 {
-    mMoveSpeed = 75.0;
+    
+    mMoveSpeed = 25.0;
+    if (keyboard_check(vk_space))
+    {
+        mMoveSpeed = 75.0;
+    }
+    
+    var vNewDirection = 0;
+    
+    if (keyboard_check(vk_left) || keyboard_check(ord('A')))
+    {
+        vNewDirection -= 1;
+    }
+    
+    if (keyboard_check(vk_right) || keyboard_check(ord('D')))
+    {
+        vNewDirection += 1;
+    }
+    
+    mXSpeed = mMoveSpeed * vNewDirection;
+    
+    if (vNewDirection != 0)
+    {
+        mDirection = vNewDirection;
+    }
+    
 }
-
-var vNewDirection = 0;
-
-if (keyboard_check(vk_left) || keyboard_check(ord('A')))
+else
 {
-    vNewDirection -= 1;
+    mXSpeed = 0;
 }
-
-if (keyboard_check(vk_right) || keyboard_check(ord('D')))
-{
-    vNewDirection += 1;
-}
-
-mXSpeed = mMoveSpeed * vNewDirection;
-
-if (vNewDirection != 0)
-{
-    mDirection = vNewDirection;
-}
-
-image_xscale = mDirection;
 </string>
           </argument>
         </arguments>
@@ -137,11 +144,14 @@ image_xscale = mDirection;
 }
 else
 {
-    if (position_meeting(x, y, obj_ladder))
+    var ladder = instance_place(x, y, obj_ladder);
+    if (ladder != noone)
     {
         if (keyboard_check_pressed(ord('E')))
         {
             mClimbing = 1;
+            x = ladder.x + 8;
+            mDirection = ladder.mDirection;
         }
     }
 }
@@ -151,37 +161,41 @@ else
       </action>
       <action>
         <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
+        <id>601</id>
+        <kind>0</kind>
         <userelative>0</userelative>
         <isquestion>0</isquestion>
         <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
+        <exetype>1</exetype>
+        <functionname>action_execute_script</functionname>
         <codestring></codestring>
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
-            <kind>1</kind>
-            <string>if (place_meeting(x + mXSpeed / room_speed, y, obj_wall))
-{
-    if (mXSpeed &gt; 0)
-    {
-        action_move_contact(0, mXSpeed / room_speed, 1);
-    }
-    if (mXSpeed &lt; 0)
-    {
-        action_move_contact(180, -mXSpeed / room_speed, 1);
-    }
-    mXSpeed = 0;
-}
-else
-{
-    x += mXSpeed / room_speed;
-}
-</string>
+            <kind>9</kind>
+            <script>scr_movement_y</script>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
           </argument>
         </arguments>
       </action>
@@ -213,39 +227,41 @@ view_yview[0] = y - view_hview[0] / 2;
       </action>
       <action>
         <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
+        <id>601</id>
+        <kind>0</kind>
         <userelative>0</userelative>
         <isquestion>0</isquestion>
         <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
+        <exetype>1</exetype>
+        <functionname>action_execute_script</functionname>
         <codestring></codestring>
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
-            <kind>1</kind>
-            <string>if (place_meeting(x, y + mYSpeed / room_speed, obj_wall))
-{
-    if (mYSpeed &gt; 0)
-    {
-        action_move_contact(270, mYSpeed / room_speed, 1);
-    }
-    if (mYSpeed &lt; 0)
-    {
-        action_move_contact(90, -mYSpeed / room_speed, 1);
-    }
-    mYSpeed = 0;
-}
-else
-{
-    y += mYSpeed / room_speed;
-}
-
-mYSpeed += 150.0 / room_speed;
-</string>
+            <kind>9</kind>
+            <script>scr_movement_x</script>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
           </argument>
         </arguments>
       </action>
@@ -272,6 +288,99 @@ mYSpeed += 150.0 / room_speed;
           <argument>
             <kind>3</kind>
             <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (mClimbing)
+{
+    sprite_index = spr_guy_climb;
+}
+else
+{
+    if (mXSpeed == 0)
+    {
+        sprite_index = spr_guy_idle;
+    }
+    else
+    {
+        sprite_index = spr_guy_walk;
+        image_speed = abs(mXSpeed) / 2 / room_speed;
+    }
+}
+image_xscale = mDirection;
+
+draw_self();
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (!mClimbing)
+{
+    var ladder = instance_place(x, y, obj_ladder);
+    if (ladder != noone)
+    {
+        draw_sprite(spr_icon_climb, 0, ladder.x + 8, y);
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="79">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>x = mouse_x;
+y = mouse_y;
+</string>
           </argument>
         </arguments>
       </action>
